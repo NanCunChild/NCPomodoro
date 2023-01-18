@@ -1,0 +1,15 @@
+<!--pages/Setting/Setting.wxml-->
+<text>pages/Setting/Setting.wxml</text>
+<view>
+  <view style="font-size: 72rpx;">憋憋憋吵！</view>
+  <view style="font-size: 72rpx;">我在烦着呢！</view>
+</view>
+
+<view class="body">
+  <view class="UserInfoRow">UserInfo</view>
+  <view class="ItemsContainer">
+    <view class="Items">Item1</view>
+    <view class="Items">Item2</view>
+    <view class="Items">Item3</view>
+  </view>
+</view>

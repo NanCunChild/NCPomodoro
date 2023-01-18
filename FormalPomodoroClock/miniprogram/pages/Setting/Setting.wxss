@@ -1,0 +1,38 @@
+/* pages/Setting/Setting.wxss */
+.body{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  border: green 2rpx solid;
+}
+.UserInfoRow{
+  width: 98%;
+  height: 210rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: green 2rpx solid;
+}
+.ItemsContainer{
+  width: 98%;
+  height: 720rpx;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+
+  border: green 2rpx solid;
+}
+.Items{
+  width: 100%;
+  height: 72rpx;
+  display: flex;
+
+
+  border: green 2rpx solid;
+}
