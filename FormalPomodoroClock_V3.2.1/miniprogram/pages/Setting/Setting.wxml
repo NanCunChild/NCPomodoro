@@ -1,0 +1,30 @@
+<!--pages/Setting/Setting.wxml-->
+<view class="body">
+  <view class="UserInfoContainer">
+    <block wx:if="{{HadUserInfo}}">
+      <view class="UserInfo">
+        <image src="{{UserInfo.avatarUrl}}" class="UserImg" />
+        <view class="UserTexts">
+          <view class="UserName">{{UserInfo.nickName}}</view>
+          <view class="UserStatus">用户状态: {{UserStatus}}</view>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="UserInfo" bindtap="LogIn">
+        <image src="/images/UnLogged.png" class="UserImg" />
+        <view class="UserTexts">
+          <view class="UserName">尚未登录</view>
+        </view>
+        </view>
+    </block>
+  </view>
+
+  <view class="ItemsContainer">
+    <view class="Items">结束后手机震动<switch checked="{{ToVibrate}}" bindchange="IsVibrate" class="SwitchSty"></switch></view>
+    <view class="Items" bindtap="GoToInfoPolicy">隐私政策</view>
+    <view class="Items" bindtap="GoToSuggestions">建议&反馈</view>
+    <view class="Items" bindtap="ShowVersion">开发版本</view>
+    <view class="LogOut" bindtap="LogOut">退出登录</view>
+  </view>
+</view>

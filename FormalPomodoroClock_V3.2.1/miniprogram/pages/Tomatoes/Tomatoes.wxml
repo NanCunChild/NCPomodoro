@@ -1,0 +1,48 @@
+<view class="Body" catchtap="CloseDetailBox">
+  <view class="CalenderContainer">
+    <view class="CalenderBar" bindtap="CloseDetailBox">
+      <view class="LeftArrow" bindtap="TapLeftArrow"></view>
+      <view class="CalenderBarDate">{{Now_Year}} {{Now_Month}} {{CurrentDay}}</view> 
+      <view class="RightArrow" bindtap="TapRightArrow"></view>
+    </view>
+    <view class="WeekTCContainer">
+      <view class="WeekTC">周一</view>
+      <view class="WeekTC">周二</view>
+      <view class="WeekTC">周三</view>
+      <view class="WeekTC">周四</view>
+      <view class="WeekTC">周五</view>
+      <view class="WeekTC">周六</view>
+      <view class="WeekTC">周日</view>
+    </view>
+    <view class="CellContainer">
+      <block wx:if="{{DateOffset==1}}">
+        <view class="Cell" wx:for="{{WeekAli_Block}}" wx:key="index"></view>
+        <view class="Cell {{CurrentDay==item ? 'Cells_Hover' : ''}}" wx:for="{{ToToDayList}}" wx:key="item" id="{{item}}" catchtap="CircleIt">{{item}}</view>
+        <view class="Cell_ToDay {{CurrentDay==32 ? 'Cell_ToDayHover' : ''}}" id="32" catchtap="CircleIt">{{ToDay}}</view>
+        <view class="Cell_RestDay {{CurrentDay==item ? 'Cells_Hover' : ''}}" wx:for="{{RestDayList}}" wx:key="item" id="{{item}}" catchtap="CircleIt">{{item}}</view>
+      </block>
+      <block wx:else>
+        <view class="Cell" wx:for="{{WeekAli_Block}}" wx:key="index"></view>
+        <view class="Cell_RestDay {{CurrentDay==item ? 'Cells_Hover' : ''}}" wx:for="{{WholeDayList}}" wx:key="item" id="{{item}}" catchtap="CircleIt">{{item}}</view>
+      </block>
+    </view>
+    <scroll-view class="DetailInfo_FIXED {{LogsDisplay.length==0 ? 'DetailInfo_FIXED_NoData':''}}" scroll-y="true" style="{{DetailBoxStyle}}" hidden="{{!ShowDetailBox}}">
+      <view class="DetailInfo_FLEX" hidden="{{LogsDisplay.length==0}}">
+        <view wx:for="{{LogsDisplay}}" wx:key="Index" class="DetailItems">
+          <view class="DetailDate">{{item.Date}}</view>
+          <view class="DetailCate">{{item.Cate}}</view>
+          <view class="DetailTime">{{item.Time}}min</view>
+          <view class="DetailDist">{{item.Dist}}次中断</view>
+        </view>
+      </view>
+      <view class="DetailInfo_FLEX_NoData" hidden="{{LogsDisplay.length!=0}}">
+        <view class="NoDetail">本日无记录</view>
+      </view>
+    </scroll-view>
+    <!-- <button bindtap="DownLoadLogs">同步云端信息</button> -->
+    <!-- <button bindtap="chartInit">ECharts Test</button> -->
+  </view>
+  <view class="LogsChart">
+    <ec-canvas id="LogsChart" canvas-id="LogsChart" ec="{{ec}}"></ec-canvas>
+  </view>
+</view>

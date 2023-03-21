@@ -1,0 +1,38 @@
+/* pages/develop/getname.wxss /* pages/develop/getname.wxss */
+page {
+  background-color: #e6e6e6;
+}
+
+.container {
+  width: 100%;
+  height: auto;
+  margin-bottom: 80rpx;
+  margin-top: 10rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.nickName {
+  display: inline-flexbox;
+  width: auto;
+  margin: 30rpx 40rpx;
+  /* border: 2rpx solid rgb(50, 192, 211); */
+}
+input{
+  border: 1px solid gray;
+  border-radius: 20rpx;
+}
+.button{
+  width: 180rpx;
+  height: 60rpx;
+  font-size: 32rpx;
+  color: #525252;
+  /* 渐变色边界 */
+  border: 2rpx solid rgb(110, 110, 110);
+  
+  border-radius: 10rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
