@@ -1,0 +1,79 @@
+<!--index.wxml-->
+<view class="body">
+  <view><image src="/images/PomodoroIcon.jpg" class="PomodoroIcon"></image></view>
+  <view>
+    <view class="AboutBar">
+      <view class="AboutLine">
+        <view>
+          <image src="/images/Contact.png" class="imgs"></image>
+        </view>
+        <view class="AboutText">联系我们</view>
+      </view>
+      <scroll-view scroll-y="true" class="DevelopersScrolls">
+        <view class="DeveloperCards">
+          <view class="details" style="width: 260rpx;"><view class="RightParty">NanCunChild</view></view>
+          <view class="details">QQ: <text user-select="true" class="SelectableText">1729138395</text></view>
+          <view class="details">Wechat: <text user-select="true" class="SelectableText">ScriptKidalsocool</text></view>
+        </view>
+
+        <view class="DeveloperCards">
+          <view class="details" style="width: 210rpx;"><view class="RightParty"> HumbleMT </view> </view>
+          <view class="details">QQ:<text user-select="true" class="SelectableText">1771780590</text></view>
+          <view class="details">Wechat:<text user-select="true" class="SelectableText">HumbleMT</text></view>
+        </view>
+        <view class="DeveloperCards">
+          <view class="details" style="width: 250rpx;"><view class="RightParty">MonsterJack</view></view>
+          <view class="details">QQ: <text user-select="true" class="SelectableText">1811663227</text></view>
+          <view class="details">Wechat: <text user-select="true" class="SelectableText">Jacklumin12580</text></view>
+        </view>
+        <view class="DeveloperCards">
+          <view class="details" style="width: 210rpx;"><view class="RightParty">Corleone</view></view>
+          <view class="details">QQ: <text user-select="true" class="SelectableText">2771396339</text></view>
+          <view class="details">Wechat: <text user-select="true" class="SelectableText">Mr_Lzyion</text></view>
+        </view>
+        <view class="details">  We all are XDUers! </view>
+        <!-- <view class="VmeContainer">
+          <view>
+            <image src="/images/Vme.jpg" class="VmeImg" hidden="{{Vme}}"></image>
+          </view>
+          <view>
+            <image src="/images/Vhim.jpg" class="VmeImg" hidden="{{Vme}}"></image>
+          </view>
+        </view> -->
+        <!-- <view class="details" hidden="{{Vme}}">图穷匕见！</view> -->
+      </scroll-view>
+
+
+    </view>
+    <view class="AboutBar">
+      <view class="AboutLine">
+        <view>
+          <image src="/images/Coding.png" class="imgs"></image>
+        </view>
+        <view class="AboutText">代码参考</view>
+      </view>
+
+
+      <view class="details">本程序由<text class="RightParty"> NanCunChild </text>&<text class="RightParty"> HumbleMT </text>借鉴多款番茄钟小程序开发</view>
+      <view class="details">感谢GitHub，感谢CSDN！</view>
+      <view class="details">舍友杰哥就是个废物</view>
+    </view>
+    <view class="AboutBar">
+      <view class="AboutLine">
+        <view>
+          <image src="/images/More.png" class="imgs"></image>
+        </view>
+        <view class="AboutText">更多功能，后续开放</view>
+      </view>
+
+      <view class="details">买不起图标，还要自己画。</view>
+      <view class="details">不会打代码，必须自己查。</view>
+      <view class="details">（要不给二次猿们买一个鸡腿支持支持？）</view>
+    </view>
+  </view>
+
+
+
+
+  <view class="version" bindtap="tapversion"> {{showVersion}}</view>
+</view>
