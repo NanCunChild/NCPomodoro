@@ -1,8 +1,0 @@
-<view class="container">
-  <view class="nickName">请输入想要的昵称(注意：暂时只能输入一次)</view>
-  <view class="nickName">
-    
-    <input style="width: 540rpx; " bindinput="getname" maxlength="6"/>
-  </view>
-  <view bindtap="addnicknametodatabase"  class="button">确定</view>
-</view>

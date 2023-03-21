@@ -1,1 +1,0 @@
-"D:\WeChatDeveTool\微信web开发者工具\cli.bat" cloud functions deploy --e cloud1-1gg6kdw415231c7f --n quickstartFunctions --r --project "E:\WeChatProjects\FormalPomodoroClock" --report_first --report
