@@ -1,0 +1,103 @@
+/* pages/DetailLogs/DetailLogs.wxss */
+.body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: #e0e0e0;
+}
+.TimeLineContainer{
+  width: 700rpx;
+  height: 660rpx;
+  margin: 20rpx 2rpx 20rpx 2rpx;
+  padding-top: 20rpx;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: #f5f5f5;
+
+
+  border: rgb(235, 235, 235) 2rpx solid;
+  border-radius: 20rpx;
+}
+.TimeLineTitle{
+  font-size: 36rpx;
+}
+.TimeLine{
+  width: 700rpx;
+  height: 580rpx;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+
+  /* border: black 2rpx solid; */
+}
+.TimeLineItems{
+  width: 640rpx;
+  height: 100rpx;
+  margin:30rpx 20rpx 30rpx 20rpx;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: #f8f8f8;
+  border: #dedede 2rpx solid;
+  border-radius: 20rpx;
+}
+.NoDataTimeLine{
+  width: 640rpx;
+  height: 400rpx;
+  margin: 30rpx 20rpx 30rpx 20rpx;
+  display: flex;
+  font-size: 36rpx;
+  color: #acacac;
+  justify-content: center;
+  align-items: center;
+}
+.TLI_Time{
+  font-size: 52rpx;
+  font-weight:200;
+  margin-left: 10rpx;
+}
+.TLI_CaDContainer{
+  display: flex;
+  flex-wrap: wrap;
+  width: 260rpx;
+}
+.TLI_Date{
+  font-size: 24rpx;
+  font-weight: 300;
+  margin-left: 20rpx;
+  color: #adadad;
+}
+.TLI_Cate{
+  font-size: 24rpx;
+  font-weight: 300;
+  margin-left: 20rpx;
+  color: #535353;
+}
+.CateSignal{
+  width: 20rpx;
+  height: 20rpx;
+  background-color: #9b8150;
+  border: 0rpx blanchedalmond solid;
+  border-radius: 10rpx;
+  position: absolute;
+  right: 30rpx;
+}
+
+.EchartsContainer{
+  width: 700rpx;
+  height: 1080rpx;
+  margin-top: 20rpx;
+  padding-top: 20rpx;
+  background-color: #f5f5f5;
+  border-radius: 30rpx;
+
+  /* border: black 2rpx solid; */
+}
+.CatePieContainer{
+  width: 690rpx;
+  height: 700rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}

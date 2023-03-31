@@ -1,0 +1,113 @@
+/* pages/Setting/Setting.wxss */
+.body {
+  width: 756rpx;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+
+  flex-wrap: wrap;
+  background-color: #e8e8e8;
+  /* border: green 2rpx solid; */
+}
+
+.UserInfoRow {
+  width: 700rpx;
+  height: 210rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5rpx;
+  background-color: rgb(156, 209, 105);
+
+  border: rgb(206, 206, 206) 1.2rpx solid;
+  border-radius: 20rpx;
+}
+
+.ItemsContainer {
+  width: 700rpx;
+  height: 580rpx;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  margin: 5rpx;
+  background-color: #f5f5f5;
+  border: rgb(206, 206, 206) 1.2rpx solid;
+  border-radius: 20rpx;
+}
+.SwitchSty{
+  position: fixed;
+  right: 100rpx;
+  transform: rotate(0deg) scale(0.8) translate(0%, 0%);
+}
+.Items {
+  width: 720rpx;
+  height: 86rpx;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding: 10rpx 0rpx 10rpx 30rpx;
+  margin: 5rpx;
+  border-bottom: #dddddd 2rpx solid;
+}
+.LogOut{
+  width: 720rpx;
+  height: 86rpx;
+  color: red;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding: 10rpx 0rpx 10rpx 30rpx;
+  margin: 5rpx;
+  
+}
+
+.UserInfoContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8rpx;
+  margin-top: 10rpx;
+  width: 700rpx;
+  height: 96px;
+  border: rgb(206, 206, 206) 1.2rpx solid;
+  background-color: #f5f5f5;
+  border-radius: 20rpx;
+}
+
+.UserInfo {
+  display: flex;
+  align-items: center;
+  height: 92px;
+  width: 720rpx;
+  border-bottom: 1px solid #eee;
+}
+
+.UserTexts {
+  width: 200rpx;
+  height: 96rpx;
+  margin: 10rpx;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.UserName {
+  font-size: 48rpx;
+  margin-bottom: 10rpx;
+  display: inline;
+}
+
+.UserStatus {
+  font-size: 24rpx;
+  margin-top: 10rpx;
+  display: inline;
+
+}
+
+.UserImg {
+  height: 100rpx;
+  width: 100rpx;
+  margin: 10rpx 60rpx 10rpx 30rpx;
+  border-radius: 36rpx;
+}
