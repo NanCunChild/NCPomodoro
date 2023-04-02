@@ -1,7 +1,7 @@
 <wxs module="filters" src="/utils/fliters.wxs"></wxs>
 
 <view class="container">
-  <view class="rank-item" style="position: relative; left: 0rpx;">
+  <view class="rank-item me">
       <!--展示昵称 累计时长-->
       <view>
         <view class="rank-name">{{my_nickname}}</view>
@@ -17,7 +17,7 @@
 
 <!-- 数据库所有排名 -->
   <view wx:for="{{nickname_totaltime_ranklist}}" wx:key="item" class="rank_block">
-    <view class="rank-item">
+    <view class="rank-item {{item.rank==1 ? 'rank-item-First':''}} {{item.rank==2 ? 'rank-item-Second':''}} {{item.rank==3 ? 'rank-item-Third':''}}">
       
       <!--展示昵称,以及次数-->
       <block>
@@ -27,7 +27,8 @@
       <!--排名-->
       <view class="rank-uv">
         <text wx:if="{{item.rank>3}}">第 {{item.rank}} 名</text>
-        <image src="/images/rank{{item.rank}}.png" wx:if="{{item.rank<=3}}" />
+        <!-- <image src="/images/rank{{item.rank}}.png" wx:if="{{item.rank<=3}}" /> -->
+        <view wx:if="{{item.rank<=3}}" class="ThreeChosensTime">{{filters.toFix(item.totaltime)}} 分钟</view>
       </view>
     </view>
   </view>

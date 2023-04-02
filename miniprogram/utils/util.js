@@ -26,15 +26,73 @@ const Initializing = n => {
 
 const UpLoadLogs = n => {
   //改动方法1
+  // try {
+  //   const Logs = wx.getStorageSync('Logs') || [] //判断是否为空 如果空的化就=[]
+  //   if (value) {
+  //     // Do something with return value
+  //   }
+  // } catch (e) {
+  //   // Do something when catch error
+  // }
+  // try {
+  //   const UserInfo = wx.getStorageSync('UserInfo') || [];
+  //   if (value) {
+  //     // Do something with return value
+  //   }
+  // } catch (e) {
+  //   // Do something when catch error
+  // }
+  // try {
+  //   const CateCustom = wx.getStorageSync('CateCustom') || []
+  //   if (value) {
+  //     // Do something with return value
+  //   }
+  // } catch (e) {
+  //   // Do something when catch error
+  // }
+  // try {
+  //   const ToVibrate = wx.getStorageSync('ToVibrate') || false
+  //   if (value) {
+  //     // Do something with return value
+  //   }
+  // } catch (e) {
+  //   // Do something when catch error
+  // }
+  // try {
+  //   const IsDebugger = wx.getStorageSync('IsDebugger') || false
+  //   if (value) {
+  //     // Do something with return value
+  //   }
+  // } catch (e) {
+  //   // Do something when catch error
+  // }
+  // try {
+  //   const IsRank = wx.getStorageSync('IsRank') || false
+  //   if (value) {
+  //     // Do something with return value
+  //   }
+  // } catch (e) {
+  //   // Do something when catch error
+  // }
+  // try {
+  //   const nickName = wx.getStorageSync('nickName') || " "
+  //   if (value) {
+  //     // Do something with return value
+  //   }
+  // } catch (e) {
+  //   // Do something when catch error
+  // }
+
   //测试
   //const局部变量
-  const Logs = wx.getStorageSync('Logs') || [] //判断是否为空 如果空的化就=[]
-  const UserInfo = wx.getStorageSync('UserInfo') || [];
-  const CateCustom = wx.getStorageSync('CateCustom') || []
-  const ToVibrate = wx.getStorageSync('ToVibrate') || false
-  const IsDebugger = wx.getStorageSync('IsDebugger') || false
-  const IsRank = wx.getStorageSync('IsRank') || false
-  const nickName = wx.getStorageSync('nickName') || ""
+
+  var Logs = wx.getStorageSync('Logs') || [] //判断是否为空 如果空的化就=[]
+  var UserInfo = wx.getStorageSync('UserInfo') || [];
+  var CateCustom = wx.getStorageSync('CateCustom') || []
+  var ToVibrate = wx.getStorageSync('ToVibrate') || false
+  var IsDebugger = wx.getStorageSync('IsDebugger') || false
+  var IsRank = wx.getStorageSync('IsRank') || false
+  var nickName = wx.getStorageSync('nickName') || " "
   console.log(Logs, UserInfo, CateCustom, ToVibrate, IsDebugger, IsRank, nickName) //获取本地缓存很成功
 
 
@@ -58,7 +116,7 @@ const UpLoadLogs = n => {
               action: 'saveLocalStorage', //传入事件参数
               Logs: Logs,
               UserInfo: UserInfo,
-              CateCustom:CateCustom,
+              CateCustom:CateCustom,//已經初始化了為什麼還是出錯
               ToVibrate: ToVibrate,
               IsDebugger: IsDebugger,
               IsRank: IsRank,

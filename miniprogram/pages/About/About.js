@@ -7,7 +7,7 @@ Page({
   data: {
     t: 0,
     Vme: true,
-    showVersion: 'V3.1.1 Beta',
+    showVersion: 'V3.3.1 Beta',
   },
 
   /**

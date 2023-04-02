@@ -708,6 +708,12 @@ Page({
         Degree = Math.atan(-Pos_x / Pos_y) + Math.PI * 2;
 
       }
+      // console.log(that.data.Bud_Degree)
+      // var timeset=((that.data.Bud_Degree / Math.PI) * 30).toFixed(0) * 60 * 1000
+      // if(timeset==0)
+      // {
+      //   timeset==
+      // }
       // if (Math.abs(Math.PI / 60 - (Degree) % (Math.PI / 6)) <= 0.33) { //调大一点容错率高
         that.setData({
           Bud_Position_x: Bud_Pos_x,
@@ -942,7 +948,9 @@ Page({
         }).get().then(ress => {
           // 判断返回的data长度是否为0，如果为0的话就证明数据库中没有该openid然后进行添加缓存操作
           console.log("indexNickname判断测试获取数据", ress); //where方法
-          if (ress.data[0].IsRank == false) { //如果没有注册
+          
+          if (ress.data.length==0) { //如果没有注册且沒有使用//如果新用户数据库为空（没有rewarding存档）
+            
             wx.navigateTo({
               url: '/pages/develop/getname',
 
@@ -951,11 +959,18 @@ Page({
               complete: (res) => {},
             })
             // 用户已经存在
-          } else {
+          } else if(ress.data[0].IsRank==false){//已使用但是沒有暱稱
             // console.log("调到")
-            wx.navigateTo({
+              wx.navigateTo({
+              url: '/pages/develop/getname',
+              success: (result) => {},
+              fail: (res) => {},
+              complete: (res) => {},
+            })
+          }
+          else{//已經註冊暱稱
+              wx.navigateTo({
               url: '/pages/develop/developmaker',
-
               success: (result) => {},
               fail: (res) => {},
               complete: (res) => {},

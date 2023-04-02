@@ -5,6 +5,7 @@
   padding-top: 20rpx;
   background-color: #f5f5f5;
   border-radius: 30rpx;
+  box-shadow: rgba(158, 158, 158, 0.445) 7rpx 7rpx 15rpx;
 }
 ec-canvas{
   width: 100%;
@@ -147,6 +148,7 @@ ec-canvas{
   align-items: center;
   background-color: #f5f5f5;
   border-radius: 30rpx;
+  box-shadow: rgba(158, 158, 158, 0.445) 7rpx 7rpx 15rpx;
 }
 .Body{
   width: 100%;

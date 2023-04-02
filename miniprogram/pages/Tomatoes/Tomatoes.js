@@ -55,7 +55,7 @@ Page({
         type: 'value',
         splitLine: {
           lineStyle: {
-            type: 'dashed'
+            type: 'dashed' 
           }
         }
         // show: false

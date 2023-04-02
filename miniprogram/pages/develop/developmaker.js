@@ -4,7 +4,7 @@
 Page({
   data: {
       nickname_totaltime_ranklist: [],
-      my_nickname:'',
+      my_nickname:'', 
       my_total_time:0,
       my_rank:0,
   },
