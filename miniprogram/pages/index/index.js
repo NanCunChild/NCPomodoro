@@ -1,5 +1,7 @@
 // pages/index/index.js
-const { DownLoadMsgs } = require('../../utils/util.js');
+const {
+  DownLoadMsgs
+} = require('../../utils/util.js');
 const util = require('../../utils/util.js');
 // var timebegin=0;
 var lastMoveTime = 0; //全局变量
@@ -21,8 +23,8 @@ Page({
     IsSideMesOpen: false,
     IsCateEditOpen: false,
     IsMsgDetailOpen: false,
-    MsgDetail_Title:"",
-    MsgDetail_Content:"",
+    MsgDetail_Title: "",
+    MsgDetail_Content: "",
     CateEditInputValue: "未命名",
     UserInfo: {},
     HadUserInfo: false,
@@ -238,7 +240,7 @@ Page({
         ctx.fill();
         ctx.closePath();
         /////////////////小纽扣
-        
+
         ctx.rotate(Math.PI / 2);
         ctx.font = '52px 微软雅黑';
         ctx.fillStyle = '#000'
@@ -343,7 +345,6 @@ Page({
   },
   Start: function () {
     var Setted = this.data.SettedTime;
-    // console.log(this.data.TimingWay);
 
     if (this.data.TimingWay == "NegetiveTiming" || this.data.TimingWay == "") {
       this.setData({
@@ -381,7 +382,9 @@ Page({
   Timer: function () {
     var that = this; //存储代码所在子函数的环境
     /*这里注意在setInterval这个回调函数里面的this指的是定时器的作用域，不是外面的函数或者页面的作用域 */
-    // var Setted = this.data.SettedTime;
+    var Setted = this.data.SettedTime;
+    var FormedSettedStr = Setted / 60000 < 10 ? '0'+(Setted / 60000).toString():(Setted / 60000).toString();
+    console.log(FormedSettedStr);
     if (this.data.TimingWay == "NegetiveTiming" || this.data.TimingWay == "") {
       var timer_n = setInterval(function () {
         var Remained = that.data.RemainedTime - 1000;
@@ -413,7 +416,7 @@ Page({
           that.setData({
             IsPaused: false,
             IsStarted: false,
-            TimeStr: "00:00"
+            TimeStr: FormedSettedStr+":00"
           })
         }
         //console.log("Reamined:"+Remained);
@@ -708,22 +711,14 @@ Page({
         Degree = Math.atan(-Pos_x / Pos_y) + Math.PI * 2;
 
       }
-      // console.log(that.data.Bud_Degree)
-      // var timeset=((that.data.Bud_Degree / Math.PI) * 30).toFixed(0) * 60 * 1000
-      // if(timeset==0)
-      // {
-      //   timeset==
-      // }
-      // if (Math.abs(Math.PI / 60 - (Degree) % (Math.PI / 6)) <= 0.33) { //调大一点容错率高
-        that.setData({
-          Bud_Position_x: Bud_Pos_x,
-          Bud_Position_y: -Bud_Pos_y,
-          Bud_Degree: Degree.toFixed(2),
-          SettedTime:  ((that.data.Bud_Degree / Math.PI) * 30).toFixed(0) * 60 * 1000, //本来是五分钟改成1分钟
-          TimeStr: ((that.data.Bud_Degree / Math.PI) * 30).toFixed(0) * 1 + ":00" //本来是5分钟改成1分钟
-        })
-        that.TimeSetting_Dynamic();
-      // }
+      that.setData({
+        Bud_Position_x: Bud_Pos_x,
+        Bud_Position_y: -Bud_Pos_y,
+        Bud_Degree: Degree.toFixed(2),
+        SettedTime: ((that.data.Bud_Degree / Math.PI) * 30).toFixed(0) * 60 * 1000, //本来是五分钟改成1分钟
+        TimeStr: ((that.data.Bud_Degree / Math.PI) * 30).toFixed(0) * 1 + ":00" //本来是5分钟改成1分钟
+      })
+      that.TimeSetting_Dynamic();
     }
   },
   TouchConvas_End: function () {
@@ -742,7 +737,6 @@ Page({
         IsSideNavOpen: true,
         IsCateOpen: false,
         IsMsgDetailOpen: false,
-        // IsCateEditOpen:false,
       })
     }
   },
@@ -760,10 +754,8 @@ Page({
         IsMsgDetailOpen: false,
       })
     }
-    // DownLoadMsgs();
   },
   TapCateItems: function (e) {
-    // console.log(e.target);
     if (this.data.Cates == e.target.id) {
       this.setData({
         Cates: "未分类"
@@ -774,7 +766,6 @@ Page({
       })
     }
     // console.log(this.data.Cates);
-
   },
   TapAddCates: function () {
     this.setData({
@@ -785,7 +776,7 @@ Page({
     // console.log(e.detail.value);
     this.setData({
       CustomName: e.detail.value,
-      CateEditInputValue:e.detail.value,
+      CateEditInputValue: e.detail.value,
     })
     // console.log(this.data.CustomName);
   },
@@ -849,8 +840,8 @@ Page({
     //   confirmText: "了解",
     // })
     this.setData({
-      MsgDetail_Title:TempMsg[TapOrder].Title,
-      MsgDetail_Content:TempMsg[TapOrder].Contents,
+      MsgDetail_Title: TempMsg[TapOrder].Title,
+      MsgDetail_Content: TempMsg[TapOrder].Contents,
       IsMsgDetailOpen: true,
     })
   },
@@ -877,7 +868,7 @@ Page({
   //   })
   // },
   ///////////////////////////////////////////////////////////////
-  ClickMsgCenterExit:function(){
+  ClickMsgCenterExit: function () {
     this.setData({
       IsMsgDetailOpen: false,
     })
@@ -948,9 +939,9 @@ Page({
         }).get().then(ress => {
           // 判断返回的data长度是否为0，如果为0的话就证明数据库中没有该openid然后进行添加缓存操作
           console.log("indexNickname判断测试获取数据", ress); //where方法
-          
-          if (ress.data.length==0) { //如果没有注册且沒有使用//如果新用户数据库为空（没有rewarding存档）
-            
+
+          if (ress.data.length == 0) { //如果没有注册且沒有使用//如果新用户数据库为空（没有rewarding存档）
+
             wx.navigateTo({
               url: '/pages/develop/getname',
 
@@ -959,17 +950,16 @@ Page({
               complete: (res) => {},
             })
             // 用户已经存在
-          } else if(ress.data[0].IsRank==false){//已使用但是沒有暱稱
+          } else if (ress.data[0].IsRank == false) { //已使用但是沒有暱稱
             // console.log("调到")
-              wx.navigateTo({
+            wx.navigateTo({
               url: '/pages/develop/getname',
               success: (result) => {},
               fail: (res) => {},
               complete: (res) => {},
             })
-          }
-          else{//已經註冊暱稱
-              wx.navigateTo({
+          } else { //已經註冊暱稱
+            wx.navigateTo({
               url: '/pages/develop/developmaker',
               success: (result) => {},
               fail: (res) => {},

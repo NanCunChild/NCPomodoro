@@ -1,8 +1,32 @@
-<view class="container">
-  <view class="nickName">请输入想要的昵称(注意：暂时只能输入一次)</view>
-  <view class="nickName">
-    
-    <input style="width: 540rpx; " bindinput="getname" maxlength="6"/>
+<view class="body">
+  <view class="BoxA_Container">
+    <view class="InputNameContainer">
+      <view class="TipsBar">
+        <view class="InputNameTips">请输入在排行榜显示的昵称</view>
+        <view class="InputNameTips" style="font-size: 24rpx; color: rgb(105, 105, 105);">(注意：暂时只能输入一次)</view>
+      </view>
+      <view class="inputContainer">
+        <input bindinput="getname" maxlength="10" />
+      </view>
+      <view class="ConfirmContainer">
+        <view bindtap="addnicknametodatabase" class="Confirmbutton">选好了</view>
+      </view>
+    </view>
+
   </view>
-  <view bindtap="addnicknametodatabase"  class="button">确定</view>
+  <view class="BoxB_Container">
+    <view class="ExplainationsContainer">
+      <view class="ExplanationTitle">
+        关于获取昵称的说明
+      </view>
+      <view class="ExplanationContent">
+        <text>皆さん！</text>
+        <text>根据微信的最新政策要求，微信小程序将无法直接获取用户的头像及昵称（基础库2.27.1生效）。在新的接口公开之前，请各位用户自行填写用户名以便于加入排名。</text>
+        <text>我们为您带来不便深感抱歉！</text>
+
+      </view>
+    </view>
+  </view>
+
+
 </view>

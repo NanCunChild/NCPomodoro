@@ -139,25 +139,22 @@ Page({
 
     })
 
-
-
   },
   getname(e) {
     nameid = e.detail.value;
     console.log(nameid); //通过测试event对象打印出要的值
   },
   addnicknametodatabase() {
-    if (nameid == '') {
+    if (nameid.length == 0) {
       wx.showToast({
         title: '昵称不能为空',
         icon: 'error'
       })
-
     } else {
       this.savenickname();
-      navigateTo({
-        url:"../develop/developmaker"
-      })
+      // wx.navigateTo({
+      //   url:"../develop/developmaker"
+      // })
     }
   },
 

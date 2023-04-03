@@ -308,9 +308,7 @@ Page({
       let OneDayTime_2 = 0;
       let OneDayTime_3 = 0;
       let OneDayTime_4 = 0;
-      // console.log("In for 1");
       for (let j = 0; j < Study_All.length; j++) {
-        // console.log(Study_All[j].Date_Year,parseInt(this.data.Now_Year),Study_All[j].Date_Month,parseInt(this.data.Now_Month),Study_All[j].Date_Day,i);
         if (Study_All[j].Date_Year == parseInt(this.data.Now_Year) && Study_All[j].Date_Month == parseInt(this.data.Now_Month) && Study_All[j].Date_Day == i) {
           OneDayTime += Study_All[j].Time;
         }
