@@ -80,6 +80,7 @@ wx.cloud.callFunction({
     that.setData({
       nickname_totaltime_ranklist:darr
     })
+    console.log(that.data.nickname_totaltime_ranklist);
     
     
   },

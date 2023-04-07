@@ -10,7 +10,7 @@
       <!--我的排名-->
       <view class="rank-uv">
         <text wx:if="{{my_rank!=0}}">专注排行：第 {{my_rank}} 名</text>
-        <text wx:if="{{my_rank==0}}">您暂时未上榜</text>
+        <text wx:if="{{my_rank==0}}">我</text>
       </view>
     </view>
 

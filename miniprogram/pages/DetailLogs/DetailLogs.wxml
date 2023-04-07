@@ -1,12 +1,13 @@
 <!--pages/DetailLogs/DetailLogs.wxml-->
-
+<wxs module="filters" src="/utils/fliters.wxs"></wxs>
 <view class="body">
   <view class="DetailandEchartsContainer">
     <view class="TimeLineContainer">
-      <view class="TimeLineTitle">番田——自律记录</view>
+      <view class="TimeLineTitle">番田——自律记录</view> 
       <scroll-view scroll-y="true" class="TimeLine">
         <view class="TimeLineItems" wx:for="{{Logs}}" wx:key="index" hidden="{{Logs.length==0}}">
-          <view class="TLI_Time">{{item.Time}}分钟</view>
+          <view class="TLI_Time">{{filters.toFix(item.Time)}}分钟</view>
+          <!-- <view class="TLI_Time">{{(item.Time)}}分钟</view> -->
           <view class="TLI_CaDContainer">
             <view class="TLI_Date">{{item.Date}}</view>
             <view class="TLI_Cate">{{item.Cate}}</view>

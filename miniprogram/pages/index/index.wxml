@@ -123,7 +123,7 @@
   <view class="ClockPart {{IsSideNavOpen ? 'NavShowClockAnimation' : ''}} {{IsCateOpen ? 'CateShowClockAnimation' : ''}} {{IsSideMesOpen ? 'MsgShowClockAnimation':''}}" bindtap="BackToMenu">
     <view class="CloAndCate">
       <view class="Clock">
-        <canvas class="ClockCanvas" id="Progress" type="2d" catchtap="ShowCate" bindtouchmove="TouchConvas" bindtouchstart="TouchConvas_Start" />
+        <canvas class="ClockCanvas" id="Progress" type="2d" catchtap="SwichSet" bindtouchmove="TouchConvas" bindtouchstart="TouchConvas_Start" />
       </view>
       <view class="TaskCates" catchtap="ShowCate" hidden="{{IsStarted}}">选项
       </view>
