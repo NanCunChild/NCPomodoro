@@ -26,7 +26,6 @@
         <ec-canvas id="CatePie" canvas-id="CatePie" ec="{{CatePie}}"></ec-canvas>
       </view>
       <!-- <button bindtap="CateData">Test</button> -->
-
     </view>
   </view>
 </view>

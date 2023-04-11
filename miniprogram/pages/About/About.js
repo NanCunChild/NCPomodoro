@@ -6,8 +6,7 @@ Page({
    */
   data: {
     t: 0,
-    Vme: true,
-    showVersion: 'V3.3.1 Beta',
+    showVersion: 'V3.3.2 Beta 20230411',
   },
 
   /**
@@ -130,10 +129,7 @@ Page({
     if (this.data.t == 4) {
       this.setData({
         showVersion: '再靠近一点快被融化',
-
       })
     }
-
-    
   }
 })

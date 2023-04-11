@@ -335,7 +335,7 @@
   z-index: 1;
 }
 .CateEditContainer{
-  width: 580rpx;
+  width: 620rpx;
   height: 300rpx;
   position: fixed;
   top:-400rpx;
@@ -373,7 +373,7 @@
 .CateEditInputs{
   display: flex;
   flex-wrap: nowrap;
-  width: 520rpx;
+  width: 540rpx;
   margin: 20rpx 0rpx 15rpx 0rpx;
 }
 .CateEditInput{
@@ -424,6 +424,12 @@
   height: 500rpx;
   /*border: 2rpx solid green;*/
   z-index: 0;
+  transition: All 0.8s ease;
+}
+
+.ClockCanvas_Big{
+  width: 550rpx;
+  height: 550rpx;
 }
 
 .TaskCates {
