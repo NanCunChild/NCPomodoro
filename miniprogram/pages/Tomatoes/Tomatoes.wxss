@@ -55,8 +55,8 @@ ec-canvas{
   /* border: #777777 solid 2rpx; */
 }
 .Cell{
-  width: 84rpx;
-  height: 84rpx;
+  width: 82rpx;
+  height: 82rpx;
   margin:5rpx;
   font-size: 36rpx;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -71,8 +71,8 @@ ec-canvas{
 }
 
 .Cell_ToDay{
-  width: 82rpx;
-  height: 82rpx;
+  width: 80rpx;
+  height: 80rpx;
   margin:5rpx;
   font-size: 36rpx;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -89,13 +89,14 @@ ec-canvas{
 }
 .Cell_ToDayHover{
   color: #fefefe;
-  font-size: 40rpx;
+  font-size: 42rpx;
+  font-weight: 500;
   background-color: #61aff8;
   /* border: 0rpx solid #519fe7; */
 }
 .Cell_RestDay{
-  width: 84rpx;
-  height: 84rpx;
+  width: 82rpx;
+  height: 82rpx;
   margin:5rpx;
   font-size: 36rpx;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -104,6 +105,7 @@ ec-canvas{
   display: flex;
   background-color: #f7f7f7;
   justify-content: center;
+  transition: All 0.2s ease;
   align-items: center;
   border: 2rpx solid rgb(245, 245, 245);
   border-radius: 48rpx;
@@ -114,7 +116,7 @@ ec-canvas{
   /* border-radius: 48rpx; */
 }
 .CellContainer{
-  width: 700rpx;
+  width: 710rpx;
   flex-wrap: wrap;
   margin: 20rpx;
   display: flex;

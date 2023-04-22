@@ -3,10 +3,8 @@ const {
   DownLoadMsgs
 } = require('../../utils/util.js');
 const util = require('../../utils/util.js');
-// var timebegin=0;
-var lastMoveTime = 0; //全局变量
-// var lasttime=0;
-// var starttodraw=true;
+var lastMoveTime = 0; //全局变量，用于画布触摸延时
+var lastTime = 0; //过渡动画渲染延时用
 Page({
   data: {
     SettedAllTime: 1500000,
@@ -40,6 +38,7 @@ Page({
     Bud_Degree: 0,
     BudSelected: false,
     Cates: "未分类",
+    AudioCtx: null,
     CateList: [{
         "Name": "学习",
         "Color": "#56aa68"
@@ -324,10 +323,38 @@ Page({
       complete: (res) => {},
     })
   },
+  PlaySlice: function () {
+    var AudioCtx = wx.createInnerAudioContext("SliceAudio");
+    AudioCtx.src = "/audios/Slice.mp3";
+    AudioCtx.autoplay = "ture";
+    AudioCtx.play();
+  },
+  PauseSlice: function () {
+    var AudioCtx = wx.createInnerAudioContext("SliceAudio");
+    AudioCtx.pause();
+  },
+  StartAnimation: function () {
+    // console.log("Degree:" + this.data.Bud_Degree);
+    var NowTime = Date.now();
+    var Duration = NowTime - lastTime;
+    if (Duration < Math.floor(1000 / 30)) return;
+    lastTime = NowTime;
+    this.data.Bud_Degree += Math.PI / 60;
+    console.log(this.data.Bud_Degree);
+
+    // console.log(this.data.ConvasWidth, this.data.ConvasHeight);
+    var Pos_X = this.data.ConvasWidth * Math.cos(this.data.Bud_Degree);
+    var Pos_Y = this.data.ConvasWidth * Math.sin(this.data.Bud_Degree);
+    this.setData({
+      Position_x: Pos_X,
+      Position_y: Pos_Y,
+    })
+    this.TimeSetting_Dynamic();
+  },
   Start: function () {
     var that = this;
     var Setted = this.data.SettedTime_Minu + that.data.SettedTime_Sec;
-
+    this.PlaySlice();
     if (this.data.TimingWay == "NegetiveTiming" || this.data.TimingWay == "") {
       this.setData({
         RemainedTime: Setted,
@@ -335,6 +362,9 @@ Page({
         IsCateOpen: false,
         IsSideNavOpen: false,
       })
+      // while(this.data.Bud_Degree<=2*Math.PI){
+      //   this.StartAnimation();
+      // }
       this.Timer();
     } else {
       console.log("正计时!");
@@ -373,11 +403,12 @@ Page({
         TimeStr: FormedSettedStr
       })
     }
+    this.PauseSlice();
   },
   Timer: function () {
     var that = this; //存储代码所在子函数的环境
     /*这里注意在setInterval这个回调函数里面的this指的是定时器的作用域，不是外面的函数或者页面的作用域 */
-    var Setted = this.data.SettedTime_Minu + this.SettedTime_Sec;
+    // var Setted = this.data.SettedTime_Minu + this.SettedTime_Sec;
     var FormedSettedStr = (this.data.SettedTime_Minu / 60000 < 10 ? '0' + (this.data.SettedTime_Minu / 60000).toString() : (this.data.SettedTime_Minu / 60000).toString()) + ":" + (this.data.SettedTime_Sec / 1000 < 10 ? '0' + (this.data.SettedTime_Sec / 1000).toString() : (this.data.SettedTime_Sec / 1000).toString());
     // console.log(FormedSettedStr);
     if (this.data.TimingWay == "NegetiveTiming" || this.data.TimingWay == "") {
@@ -656,17 +687,19 @@ Page({
   },
 
   SwitchSet() {
-    let that = this;
-    if (that.data.SetMode == 'Minu') {
-      that.setData({
-        SetMode: 'Sec',
-      })
-    } else {
-      that.setData({
-        SetMode: 'Minu',
-      })
+    if (this.data.IsStarted == false) {
+      let that = this;
+      if (that.data.SetMode == 'Minu') {
+        that.setData({
+          SetMode: 'Sec',
+        })
+      } else {
+        that.setData({
+          SetMode: 'Minu',
+        })
+      }
+      that.TimeSetting_Dynamic();
     }
-    that.TimeSetting_Dynamic();
   },
 
   TouchConvas_Start(e) {
@@ -787,6 +820,11 @@ Page({
         IsCateEditOpen: false,
       })
     }
+  },
+  GotoNotePad:function(){
+    wx.redirectTo({
+      url: '/pages/NotePad/NotePad',
+    })
   },
   TapCateItems: function (e) {
     if (this.data.Cates == e.target.id) {
@@ -940,6 +978,15 @@ Page({
   GoToTomato: function (events) {
     wx.navigateTo({
       url: '/pages/Tomatoes/Tomatoes',
+      events: events,
+      success: (result) => {},
+      fail: (res) => {},
+      complete: (res) => {},
+    })
+  },
+  GoToGetName: function (events) {
+    wx.navigateTo({
+      url: '/pages/getname/getname',
       events: events,
       success: (result) => {},
       fail: (res) => {},

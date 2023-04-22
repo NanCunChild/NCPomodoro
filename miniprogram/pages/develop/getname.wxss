@@ -2,7 +2,7 @@
 
 .body {
   background-color: #e0e0e0;
-  height: 1480rpx;
+  height: 1430rpx;
   width: 760rpx;
   display: flex;
   justify-content: center;
@@ -12,8 +12,8 @@
 
 .BoxA_Container {
   width: 750rpx;
-  height: 480rpx;
-  margin-bottom: 10rpx;
+  height: 520rpx;
+  margin-bottom: 2rpx;
   margin-top: 80rpx;
   display: flex;
   flex-direction: column;
@@ -22,9 +22,22 @@
   flex-wrap: wrap;
 }
 
+
+
 .InputNameContainer {
   width: 680rpx;
-  height: 320rpx;
+  height: 420rpx;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: #f5f5f5;
+  box-shadow: rgba(158, 158, 158, 0.445) 7rpx 7rpx 15rpx;
+  border-radius: 20rpx;
+}
+
+.InputImgContainer{
+  width: 680rpx;
+  height: 380rpx;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -53,7 +66,28 @@
   display: flex;
   width: 542rpx;
   height: auto;
-  font-size: 38rpx;
+  font-size: 36rpx;
+}
+
+.ImgContainer{
+  width: 620rpx;
+  height: 120rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: #dddddd 2rpx solid;
+  /* border-bottom: #dddddd 2rpx solid; */
+}
+
+.UserImg{
+  width: 86rpx;
+  height: 86rpx;
+  border-radius: 43rpx;
+}
+
+.GetUserImgButton{
+  width: 86rpx;
+  width: 86rpx;
 }
 
 .inputContainer {
@@ -62,13 +96,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border-top: #dddddd 2rpx solid;
+  border-bottom: #dddddd 2rpx solid;
+}
+
+.nickNameTag{
+  height: 48rpx;
+  width: 100rpx;
+  font-size: 28rpx;
 }
 
 input {
   width: 480rpx;
   height: 48rpx;
-  border: 1px solid gray;
-  border-radius: 24rpx;
+  /* border: 1px solid gray; */
+  /* border-radius: 24rpx; */
   padding-left: 20rpx;
 }
 
@@ -106,9 +148,21 @@ input {
 
 .BoxB_Container {
   width: 750rpx;
-  height: 860rpx;
+  height: 500rpx;
   margin-bottom: 10rpx;
-  margin-top: 10rpx;
+  margin-top: 2rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.BoxC_Container {
+  width: 750rpx;
+  height: 420rpx;
+  margin-bottom: 2rpx;
+  margin-top: 2rpx;
   display: flex;
   flex-direction: column;
   justify-content: center;
