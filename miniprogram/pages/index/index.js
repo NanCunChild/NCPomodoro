@@ -3,16 +3,13 @@ const {
   DownLoadMsgs
 } = require('../../utils/util.js');
 const util = require('../../utils/util.js');
-var lastMoveTime = 0; //全局变量，用于画布触摸延时
-var lastTime = 0; //过渡动画渲染延时用
+// var timebegin=0;
+var lastMoveTime = 0; //全局变量
+// var lasttime=0;
+// var starttodraw=true;
 Page({
   data: {
-    SettedAllTime: 1500000,
-    SettedTime_Minu: 1500000,
-    SettedTime_Sec: 0,
-    TimeStr_Minu: "25",
-    TimeStr_Sec: "00",
-    SetMode: 'Minu',
+    SettedTime: 1500000,
     RemainedTime: 50000,
     TimeStr: '25:00',
     timer: null,
@@ -22,7 +19,6 @@ Page({
     IsCateOpen: false,
     IsStarted: false,
     IsPaused: false,
-    IsSetSecond: false,
     IsSideNavOpen: false,
     IsSideMesOpen: false,
     IsCateEditOpen: false,
@@ -38,7 +34,6 @@ Page({
     Bud_Degree: 0,
     BudSelected: false,
     Cates: "未分类",
-    AudioCtx: null,
     CateList: [{
         "Name": "学习",
         "Color": "#56aa68"
@@ -72,6 +67,10 @@ Page({
     util.DownLoadMsgs();
     util.DownLoadLogs();
     wx.setStorageSync('init', 0);
+    // console.log("MsgList缓存内容：");
+    // console.log(this.data.CateList);
+    // console.log(wx.getStorageSync('Logs'));
+    // this.TimeSetting_Static();
     this.TimeSetting_Dynamic();
     this.setData({
       Bud_Position_x: Math.sin((5 / 6) * Math.PI) * (this.data.ConvasWidth / 2 - 24),
@@ -80,7 +79,10 @@ Page({
       MsgList: wx.getStorageSync('MsgList'),
       ToVibrate: wx.getStorageSync('ToVibrate'),
     })
-
+    // console.log("ToVibrate: "+this.data.ToVibrate);
+    //此处无法获取Convas的长度和宽度，不知道是什么原因？
+    // console.log("ConvasWidth/2-18: " + this.data.ConvasWidth / 2 - 18)
+    // this.Rewarding();
   },
 
   onReady() {
@@ -118,7 +120,8 @@ Page({
 
   },
   TimeSetting_Dynamic: function () {
-    let that = this;
+    var that = this;
+
     // console.log("坐标",this.data.Bud_Position_x,this.data.Bud_Position_y)
     wx.createSelectorQuery()
       .select('#Progress')
@@ -127,6 +130,7 @@ Page({
         size: true
       })
       .exec((res) => {
+        // console.log("res=",res);
         const canvas = res[0].node
         const ctx = canvas.getContext('2d')
         const width = res[0].width;
@@ -134,14 +138,52 @@ Page({
         const WindowInfo = wx.getWindowInfo();
         const dpr = WindowInfo.pixelRatio;
 
+        //修改1
         var degree = (that.data.Bud_Degree);
+        // console.log("res[0].height" + res[0].height)
         canvas.width = width * dpr;
         canvas.height = height * dpr;
         ctx.scale(dpr, dpr);
         ctx.translate(width / 2, height / 2);
 
         ctx.rotate(-Math.PI / 2);
-        /////////////////// 动态圆
+
+        ////////////////////动态圆
+        // ctx.beginPath();
+        // ctx.arc(0, 0, width / 2 - 24, 0, degree);
+        // ctx.lineWidth = 10;
+        // /*
+        // var Gradient_Green = ctx.createLinearGradient(0, 0, 0, height / 2); 
+        // Gradient_Green.addColorStop("0", "#a3da33"); 
+        // Gradient_Green.addColorStop("1.0", "#56B37F"); 
+        // */
+        // ctx.strokeStyle = "#a3da33";
+        // ctx.stroke();//定时器实现stoke
+        // ctx.closePath();
+
+        // ctx.beginPath();
+        // ctx.arc(width / 2 - 24, 0, 5, 0, Math.PI * 2);
+        // ctx.fillStyle = "#a3da33";
+        // ctx.fill();
+        // ctx.closePath();
+        ////////////////////动态圆
+
+        //此时坐标轴正常，向右为x轴正方向，向上为y轴正方向
+        //////////////////小纽扣
+        // lasttime=timebegin;
+        //   var time=setInterval(function(){
+
+        //     timebegin=timebegin+25;
+        //     if(timebegin-lasttime>=25)
+        //     {
+        //         starttodraw=1;
+        //     }
+        //     // that.TimeSetting_Dynamic();
+        // },25)
+
+        //每25ms刷新一次这个用定时器的方法失败了
+        // if(starttodraw==true)
+        // {
 
         /////////////////// 灰色背景圆
         ctx.beginPath();
@@ -156,6 +198,11 @@ Page({
         ctx.beginPath();
         ctx.arc(0, 0, width / 2 - 24, 0, degree);
         ctx.lineWidth = 10;
+        /*
+        var Gradient_Green = ctx.createLinearGradient(0, 0, 0, height / 2); 
+        Gradient_Green.addColorStop("0", "#a3da33"); 
+        Gradient_Green.addColorStop("1.0", "#56B37F"); 
+        */
         ctx.strokeStyle = "#a3da33";
         ctx.stroke(); //定时器实现stoke
         ctx.closePath();
@@ -171,13 +218,8 @@ Page({
 
         /////////////////小纽扣
         ctx.beginPath();
-        ctx.beginPath();
-        let Position_x = Math.round(Math.sin(degree) * (width / 2 - 24));
-        let Position_y = Math.round(Math.cos(degree) * (width / 2 - 24));
-        this.setData({
-          Bud_Position_x: Position_x,
-          Bud_Position_y: Position_y,
-        })
+        let Position_x = that.data.Bud_Position_x;
+        let Position_y = that.data.Bud_Position_y;
 
         ctx.arc(Position_y, Position_x, 12, 0, Math.PI * 2);
         ctx.fillStyle = "#ffffff";
@@ -202,33 +244,11 @@ Page({
         ctx.rotate(Math.PI / 2);
         ctx.font = '52px 微软雅黑';
         ctx.fillStyle = '#000'
+        ctx.fillText(this.data.TimeStr, -ctx.measureText(this.data.TimeStr).width * 0.5, 10);
 
-        if (that.data.SetMode == "Minu") {
-          ctx.font = '56px 微软雅黑';
-          ctx.fillText(this.data.TimeStr_Minu, -ctx.measureText(this.data.TimeStr_Minu + ":").width, 12);
-          ctx.font = '52px 微软雅黑';
-          ctx.fillText(":", -ctx.measureText(":").width * 0.5, 10);
-          ctx.fillText(this.data.TimeStr_Sec, ctx.measureText(":").width * 0.9, 10);
-          ctx.font = '14px 微软雅黑';
-          ctx.fillStyle = '#808A87';
-          ctx.fillText("设定分钟", -ctx.measureText("设定分钟").width * 0.5, 36);
-          // that.TimeSetting_Dynamic();
-        } else {
-          ctx.fillText(this.data.TimeStr_Minu, -ctx.measureText(this.data.TimeStr_Minu + ":").width, 10);
-          ctx.fillText(":", -ctx.measureText(":").width * 0.5, 10);
-          ctx.font = '56px 微软雅黑';
-          ctx.fillText(this.data.TimeStr_Sec, ctx.measureText(":").width * 0.9, 12);
-          ctx.font = '52px 微软雅黑';
-          ctx.font = '14px 微软雅黑';
-          ctx.fillStyle = '#808A87';
-          ctx.fillText("设定秒钟", -ctx.measureText("设定秒钟").width * 0.5, 36);
-          // that.TimeSetting_Dynamic();
-        }
-
-
-        // ctx.font = '14px 微软雅黑';
-        // ctx.fillStyle = '#808A87';
-        // ctx.fillText("设定时间", -ctx.measureText("设定时间").width * 0.5, 36);
+        ctx.font = '14px 微软雅黑';
+        ctx.fillStyle = '#808A87';
+        ctx.fillText("设定时间", -ctx.measureText("设定时间").width * 0.5, 36);
 
         ctx.font = '12px 微软雅黑';
         ctx.fillStyle = '#808A87';
@@ -323,38 +343,9 @@ Page({
       complete: (res) => {},
     })
   },
-  PlaySlice: function () {
-    var AudioCtx = wx.createInnerAudioContext("SliceAudio");
-    AudioCtx.src = "/audios/Slice.mp3";
-    AudioCtx.autoplay = "ture";
-    AudioCtx.play();
-  },
-  PauseSlice: function () {
-    var AudioCtx = wx.createInnerAudioContext("SliceAudio");
-    AudioCtx.pause();
-  },
-  StartAnimation: function () {
-    // console.log("Degree:" + this.data.Bud_Degree);
-    var NowTime = Date.now();
-    var Duration = NowTime - lastTime;
-    if (Duration < Math.floor(1000 / 30)) return;
-    lastTime = NowTime;
-    this.data.Bud_Degree += Math.PI / 60;
-    console.log(this.data.Bud_Degree);
-
-    // console.log(this.data.ConvasWidth, this.data.ConvasHeight);
-    var Pos_X = this.data.ConvasWidth * Math.cos(this.data.Bud_Degree);
-    var Pos_Y = this.data.ConvasWidth * Math.sin(this.data.Bud_Degree);
-    this.setData({
-      Position_x: Pos_X,
-      Position_y: Pos_Y,
-    })
-    this.TimeSetting_Dynamic();
-  },
   Start: function () {
-    var that = this;
-    var Setted = this.data.SettedTime_Minu + that.data.SettedTime_Sec;
-    this.PlaySlice();
+    var Setted = this.data.SettedTime;
+
     if (this.data.TimingWay == "NegetiveTiming" || this.data.TimingWay == "") {
       this.setData({
         RemainedTime: Setted,
@@ -362,9 +353,6 @@ Page({
         IsCateOpen: false,
         IsSideNavOpen: false,
       })
-      // while(this.data.Bud_Degree<=2*Math.PI){
-      //   this.StartAnimation();
-      // }
       this.Timer();
     } else {
       console.log("正计时!");
@@ -376,41 +364,27 @@ Page({
       })
       this.Timer();
     }
+
   },
   GiveUp: function () {
-    var FormedSettedStr = (this.data.SettedTime_Minu / 60000 < 10 ? '0' + (this.data.SettedTime_Minu / 60000).toString() : (this.data.SettedTime_Minu / 60000).toString()) + ":" + (this.data.SettedTime_Sec / 1000 < 10 ? '0' + (this.data.SettedTime_Sec / 1000).toString() : (this.data.SettedTime_Sec / 1000).toString());
-    var that = this;
     this.setData({
       IsStarted: false,
       Bud_Degree: (5 / 6) * Math.PI,
       Bud_Position_x: Math.sin((5 / 6) * Math.PI) * (this.data.ConvasWidth / 2 - 18),
       Bud_Position_y: Math.cos((5 / 6) * Math.PI) * (this.data.ConvasWidth / 2 - 18),
-      SettedTime_Minu: 1500000,
+      SettedTime: 1500000,
       RemainedTime: 10000,
       TimeStr: "25:00",
     })
     this.TimeSetting_Dynamic();
-    if (this.data.TimingWay == "NegetiveTiming" || this.data.TimingWay == "") {
-      clearInterval(this.data.timer);
-      clearInterval(this.data.timer_p);
-    } else {
-      clearInterval(this.data.timer_p);
-      clearInterval(this.data.timer);
-      that.Rewarding();
-      that.setData({
-        IsPaused: false,
-        IsStarted: false,
-        TimeStr: FormedSettedStr
-      })
-    }
-    this.PauseSlice();
+    clearInterval(this.data.timer);
   },
   Timer: function () {
     var that = this; //存储代码所在子函数的环境
     /*这里注意在setInterval这个回调函数里面的this指的是定时器的作用域，不是外面的函数或者页面的作用域 */
-    // var Setted = this.data.SettedTime_Minu + this.SettedTime_Sec;
-    var FormedSettedStr = (this.data.SettedTime_Minu / 60000 < 10 ? '0' + (this.data.SettedTime_Minu / 60000).toString() : (this.data.SettedTime_Minu / 60000).toString()) + ":" + (this.data.SettedTime_Sec / 1000 < 10 ? '0' + (this.data.SettedTime_Sec / 1000).toString() : (this.data.SettedTime_Sec / 1000).toString());
-    // console.log(FormedSettedStr);
+    var Setted = this.data.SettedTime;
+    var FormedSettedStr = Setted / 60000 < 10 ? '0'+(Setted / 60000).toString():(Setted / 60000).toString();
+    console.log(FormedSettedStr);
     if (this.data.TimingWay == "NegetiveTiming" || this.data.TimingWay == "") {
       var timer_n = setInterval(function () {
         var Remained = that.data.RemainedTime - 1000;
@@ -442,7 +416,7 @@ Page({
           that.setData({
             IsPaused: false,
             IsStarted: false,
-            TimeStr: FormedSettedStr
+            TimeStr: FormedSettedStr+":00"
           })
         }
         //console.log("Reamined:"+Remained);
@@ -451,8 +425,7 @@ Page({
       that.data.timer = timer_n
     } else {
       var timer_p = setInterval(function () {
-        var Remained = that.data.RemainedTime + 1000; //调试正计时
-
+        var Remained = that.data.RemainedTime + 1000;
         that.setData({
           RemainedTime: Remained,
         });
@@ -471,14 +444,7 @@ Page({
                 TimeStr: "60:00",
               });
               console.log("已超过60分钟！");
-              // clearInterval(timer);
-              clearInterval(timer_p);
-              that.Rewarding();
-              that.setData({
-                IsPaused: false,
-                IsStarted: false,
-                TimeStr: FormedSettedStr
-              })
+              clearInterval(timer);
             }
           }
         } else {
@@ -491,8 +457,8 @@ Page({
   },
   ClockProcessing: function () {
     if (this.data.TimingWay == "NegetiveTiming" || this.data.TimingWay == "") {
-      var DrawingDegree = (this.data.RemainedTime / (this.data.SettedTime_Minu + this.data.SettedTime_Sec)) * 2 * Math.PI;
-      // var that = this;
+      var DrawingDegree = (this.data.RemainedTime / this.data.SettedTime) * 2 * Math.PI;
+      var that = this;
       wx.createSelectorQuery()
         .select('#Progress')
         .fields({
@@ -591,7 +557,7 @@ Page({
           ////////////
         })
     } else {
-      // var that = this;
+      var that = this;
       wx.createSelectorQuery()
         .select('#Progress')
         .fields({
@@ -616,7 +582,11 @@ Page({
           ctx.beginPath();
           ctx.arc(0, 0, width / 2 - 18, 0, 2 * Math.PI);
           ctx.lineWidth = 10;
-
+          /*
+          var Gradient_Green = ctx.createLinearGradient(0, 0, 0, height / 2);
+          Gradient_Green.addColorStop("0", "#a3da33");
+          Gradient_Green.addColorStop("1.0", "#56B37F");
+          */
           ctx.strokeStyle = "#a3da33";
           ctx.stroke();
           ctx.closePath();
@@ -658,23 +628,20 @@ Page({
       LogsColor = "#b4b4b4";
     }
     if (this.data.TimingWay == "NegetiveTiming" || this.data.TimingWay == "") {
-      if ((that.data.SettedAllTime / (1000 * 60)) <= 1) return;
-      console.log();
       log.unshift({
         Date: util.formatTime(new Date),
         Cate: that.data.Cates,
-        Time: parseFloat((that.data.SettedAllTime / (1000 * 60)).toFixed(2)),
+        Time: that.data.SettedTime / (1000 * 60),
         Dist: 0,
         Way: "Negetive",
         Index: log.length,
         DisplayColor: LogsColor,
       })
     } else if (this.data.TimingWay == "PositiveTiming") {
-      if ((that.data.RemainedTime / (1000 * 60)) <= 1) return;
       log.unshift({
         Date: util.formatTime(new Date),
         Cate: that.data.Cates,
-        Time: parseFloat((that.data.RemainedTime / (1000 * 60)).toFixed(2)),
+        Time: that.data.RemainedTime / (1000 * 60),
         Dist: 0,
         Way: "Positive",
         Index: log.length,
@@ -684,29 +651,12 @@ Page({
 
     wx.setStorageSync('Logs', log);
     util.UpLoadLogs();
+    // console.log(log);
   },
-
-  SwitchSet() {
-    if (this.data.IsStarted == false) {
-      let that = this;
-      if (that.data.SetMode == 'Minu') {
-        that.setData({
-          SetMode: 'Sec',
-        })
-      } else {
-        that.setData({
-          SetMode: 'Minu',
-        })
-      }
-      that.TimeSetting_Dynamic();
-    }
-  },
-
   TouchConvas_Start(e) {
     // console.log(e);
-    var that = this;
-    if (!that.data.IsStarted) {
-
+    if (!this.data.IsStarted) {
+      var that = this;
       wx.createSelectorQuery().select('#Progress').boundingClientRect(function (rect) {
         // console.log("角度=",rect)
         var Pos_x = (e.changedTouches[0].x - that.data.ConvasWidth / 2).toFixed(1);
@@ -731,21 +681,22 @@ Page({
   },
   TouchConvas: function (e) {
     //最耗性能touchmove及其浮点计算还有绘制过程
-    //---利用视觉暂留现象解决，通过降低 touchmove 事件的触发频率来减少计算量和绘制量，从而提升性能。---
+    // console.log(e);
+    //---利用视觉暂留现象解决之---
     let nowtime = Date.now();
+    // console.log(nowtime);//精确到毫秒
     let duration = nowtime - lastMoveTime; //全局
     if (duration < Math.floor(1000 / 60)) return; //向下取整每秒显示60次 核心步骤
     lastMoveTime = nowtime;
-
     if (this.data.BudSelected && !this.data.IsStarted) {
-      let that = this;
-      let Pos_x = e.changedTouches[0].x - that.data.ConvasWidth / 2;
-      let Pos_y = e.changedTouches[0].y - that.data.ConvasHeight / 2;
-      let Radius = Math.sqrt(Pos_x * Pos_x + Pos_y * Pos_y);
-      let ratio = (that.data.ConvasWidth / 2 - 20) / Radius;
-      let Bud_Pos_x = Pos_x * ratio;
-      let Bud_Pos_y = Pos_y * ratio;
-      let Degree = 0;
+      var that = this;
+      var Pos_x = e.changedTouches[0].x - that.data.ConvasWidth / 2;
+      var Pos_y = e.changedTouches[0].y - that.data.ConvasHeight / 2;
+      var Radius = Math.sqrt(Pos_x * Pos_x + Pos_y * Pos_y);
+      var ratio = (that.data.ConvasWidth / 2 - 20) / Radius;
+      var Bud_Pos_x = Pos_x * ratio;
+      var Bud_Pos_y = Pos_y * ratio;
+      var Degree = 0;
 
       if (Bud_Pos_x > 0 && -Bud_Pos_y > 0) {
         Degree = Math.atan(-Pos_x / Pos_y);
@@ -758,29 +709,14 @@ Page({
 
       } else if (Bud_Pos_x < 0 && -Bud_Pos_y > 0) {
         Degree = Math.atan(-Pos_x / Pos_y) + Math.PI * 2;
+
       }
       that.setData({
         Bud_Position_x: Bud_Pos_x,
         Bud_Position_y: -Bud_Pos_y,
         Bud_Degree: Degree.toFixed(2),
-      })
-      if (this.data.SetMode == 'Minu') {
-        that.setData({
-          SettedTime_Minu: ((that.data.Bud_Degree / Math.PI) * 30).toFixed(0) * 60 * 1000,
-        })
-      } else {
-        that.setData({
-          SettedTime_Sec: ((that.data.Bud_Degree / Math.PI) * 30).toFixed(0) * 1000,
-        })
-      }
-      let FormedSettedMinu = that.data.SettedTime_Minu / 60000 < 10 ? "0" + ((that.data.SettedTime_Minu / 60000).toFixed(0)).toString() : ((that.data.SettedTime_Minu / 60000).toFixed(0)).toString();
-      let FormedSettedSec = that.data.SettedTime_Sec / 1000 < 10 ? "0" + ((that.data.SettedTime_Sec / 1000).toFixed(0)).toString() : ((that.data.SettedTime_Sec / 1000).toFixed(0)).toString();
-      // console.log(FormedSettedMinu,FormedSettedSec);
-      that.setData({
-        TimeStr: FormedSettedMinu + ":" + FormedSettedSec,
-        TimeStr_Minu: FormedSettedMinu,
-        TimeStr_Sec: FormedSettedSec,
-        SettedAllTime: that.data.SettedTime_Minu + that.data.SettedTime_Sec,
+        SettedTime: ((that.data.Bud_Degree / Math.PI) * 30).toFixed(0) * 60 * 1000, //本来是五分钟改成1分钟
+        TimeStr: ((that.data.Bud_Degree / Math.PI) * 30).toFixed(0) * 1 + ":00" //本来是5分钟改成1分钟
       })
       that.TimeSetting_Dynamic();
     }
@@ -801,7 +737,6 @@ Page({
         IsSideNavOpen: true,
         IsCateOpen: false,
         IsMsgDetailOpen: false,
-        IsCateEditOpen: false,
       })
     }
   },
@@ -817,14 +752,8 @@ Page({
         IsSideMesOpen: true,
         IsCateOpen: false,
         IsMsgDetailOpen: false,
-        IsCateEditOpen: false,
       })
     }
-  },
-  GotoNotePad:function(){
-    wx.redirectTo({
-      url: '/pages/NotePad/NotePad',
-    })
   },
   TapCateItems: function (e) {
     if (this.data.Cates == e.target.id) {
@@ -852,10 +781,10 @@ Page({
     // console.log(this.data.CustomName);
   },
   SendEditContents: function () {
-    let CustomList = this.data.CateCustom;
-    let CustomName = this.data.CustomName;
-    let RandomTemp = Math.floor(Math.random() * 1000000);
-    let RandomColor = "#" + RandomTemp.toString();
+    var CustomList = this.data.CateCustom;
+    var CustomName = this.data.CustomName;
+    var RandomTemp = Math.floor(Math.random() * 1000000);
+    var RandomColor = "#" + RandomTemp.toString();
     if (this.data.CustomName == "") {
       this.setData({
         CustomName: "新标签",
@@ -901,8 +830,8 @@ Page({
   },
   MsgDetails: function (e) {
     // console.log(e.target.id);
-    let TapOrder = e.target.id;
-    let TempMsg = wx.getStorageSync('MsgList');
+    var TapOrder = e.target.id;
+    var TempMsg = wx.getStorageSync('MsgList');
     console.log(TempMsg[TapOrder].Contents);
     // wx.showModal({
     //   title: TempMsg[TapOrder].Title,
@@ -930,13 +859,21 @@ Page({
         })
       }
     }
+
   },
+  ////////////////////////////////////////////////////////////////
+  // SlideChangeTime: function (e) {
+  //   this.setData({
+  //     TimeSettingTemp: e.detail.value * 60000
+  //   })
+  // },
+  ///////////////////////////////////////////////////////////////
   ClickMsgCenterExit: function () {
     this.setData({
       IsMsgDetailOpen: false,
     })
   },
-  BackToMenu: function () { //重要函数，保证点击主界面可以关闭所有窗口
+  BackToMenu: function () {
     if (this.data.IsSideNavOpen || this.data.IsSideMesOpen || this.data.IsCateOpen) {
       this.setData({
         IsSideNavOpen: false,
@@ -944,7 +881,6 @@ Page({
         IsCateOpen: false,
         IsCateEditOpen: false,
         IsMsgDetailOpen: false,
-        IsCateEditOpen: false,
       })
     }
   },
@@ -978,15 +914,6 @@ Page({
   GoToTomato: function (events) {
     wx.navigateTo({
       url: '/pages/Tomatoes/Tomatoes',
-      events: events,
-      success: (result) => {},
-      fail: (res) => {},
-      complete: (res) => {},
-    })
-  },
-  GoToGetName: function (events) {
-    wx.navigateTo({
-      url: '/pages/getname/getname',
       events: events,
       success: (result) => {},
       fail: (res) => {},

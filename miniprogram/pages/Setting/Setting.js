@@ -151,7 +151,7 @@ Page({
   ShowVersion:function(){
     wx.showModal({
       title: 'NC-Pomodoro Version',
-      content: 'V3.3.2 Beta 20230411',
+      content: 'V3.3.1 Beta',
       showCancel:false,
     })
   }

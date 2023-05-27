@@ -2,32 +2,18 @@
   <view class="BoxA_Container">
     <view class="InputNameContainer">
       <view class="TipsBar">
-        <view class="InputNameTips">请输入在排行榜显示的昵称与头像</view>
-        <view class="InputNameTips" style="font-size: 24rpx; color: rgb(105, 105, 105);">(注意：总长度不能大于10)</view>
-      </view>
-      <view class="ImgContainer">
-        <button class="GetUserImgButton" open-type="chooseAvatar" bindchooseavatar="getAvatars"><image src="{{AvatarURL}}" class="UserImg"></image></button>
+        <view class="InputNameTips">请输入在排行榜显示的昵称</view>
+        <view class="InputNameTips" style="font-size: 24rpx; color: rgb(105, 105, 105);">(注意：暂时只能输入一次)</view>
       </view>
       <view class="inputContainer">
-        <view class="nickNameTag">昵称</view>
-        <input type="nickname" placeholder="请输入昵称" bindinput="getname" maxlength="10" />
+        <input bindinput="getname" maxlength="10" />
       </view>
       <view class="ConfirmContainer">
         <view bindtap="addnicknametodatabase" class="Confirmbutton">选好了</view>
       </view>
     </view>
-  </view>
-  <!-- 
-  <view class="BoxC_Container">
-    <view class="InputImgContainer">
-      <view class="TipsBar">
-        <view class="InputNameTips">请输入在排行榜显示的昵称</view>
-        <view class="InputNameTips" style="font-size: 24rpx; color: rgb(105, 105, 105);">(注意：总长度不能大于10)</view>
-      </view>
-    </view>
-  </view>
- -->
 
+  </view>
   <view class="BoxB_Container">
     <view class="ExplainationsContainer">
       <view class="ExplanationTitle">

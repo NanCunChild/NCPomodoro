@@ -19,10 +19,6 @@
   height: 60rpx;
 }
 
-.Write{
-  margin-right: 20rpx;
-}
-
 .ImgCont {
   margin: 20rpx;
 }
@@ -339,7 +335,7 @@
   z-index: 1;
 }
 .CateEditContainer{
-  width: 620rpx;
+  width: 580rpx;
   height: 300rpx;
   position: fixed;
   top:-400rpx;
@@ -377,7 +373,7 @@
 .CateEditInputs{
   display: flex;
   flex-wrap: nowrap;
-  width: 540rpx;
+  width: 520rpx;
   margin: 20rpx 0rpx 15rpx 0rpx;
 }
 .CateEditInput{
@@ -428,12 +424,6 @@
   height: 500rpx;
   /*border: 2rpx solid green;*/
   z-index: 0;
-  transition: All 0.8s ease;
-}
-
-.ClockCanvas_Big{
-  width: 550rpx;
-  height: 550rpx;
 }
 
 .TaskCates {

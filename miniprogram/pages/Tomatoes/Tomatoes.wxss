@@ -33,7 +33,7 @@ ec-canvas{
   font-weight: 100;
 }
 .WeekTC{
-  width: 86rpx;
+  width: 84rpx;
   height: 20rpx;
   margin: 0rpx 5rpx 0rpx 5rpx;
   display: flex;
@@ -45,18 +45,19 @@ ec-canvas{
   /* border: #777777 solid 2rpx; */
 }
 .WeekTCContainer{
-  width: 660rpx;
+  width: 640rpx;
   height: 24rpx;
-  margin: 0rpx 0rpx -25rpx 0rpx;
+  margin: 0rpx 0rpx -18rpx 0rpx;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: nowrap;
+
   /* border: #777777 solid 2rpx; */
 }
 .Cell{
-  width: 82rpx;
-  height: 82rpx;
+  width: 86rpx;
+  height: 86rpx;
   margin:5rpx;
   font-size: 36rpx;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -65,14 +66,14 @@ ec-canvas{
   background-color: rgb(245, 243, 245);
   justify-content: center;
   align-items: center;
-  transition: All 0.2s ease;
-  border: 2rpx solid rgb(245, 245, 245);
+  /* transform: skewX(37deg); */
+  border: 0rpx solid rgb(204, 204, 204);
   border-radius: 48rpx;
 }
 
 .Cell_ToDay{
-  width: 80rpx;
-  height: 80rpx;
+  width: 82rpx;
+  height: 82rpx;
   margin:5rpx;
   font-size: 36rpx;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -83,20 +84,20 @@ ec-canvas{
   background-color: rgb(245, 243, 245);
   justify-content: center;
   align-items: center;
-  transition: All 0.2s ease;
+  /* transform: skewX(37deg); */
   border: 4rpx solid  #519fe7;
   border-radius: 48rpx;
 }
 .Cell_ToDayHover{
+  width: 86rpx;
+  height: 86rpx;
   color: #fefefe;
-  font-size: 42rpx;
-  font-weight: 500;
   background-color: #61aff8;
-  /* border: 0rpx solid #519fe7; */
+  border: 0rpx solid #519fe7;
 }
 .Cell_RestDay{
-  width: 82rpx;
-  height: 82rpx;
+  width: 86rpx;
+  height: 86rpx;
   margin:5rpx;
   font-size: 36rpx;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -105,18 +106,19 @@ ec-canvas{
   display: flex;
   background-color: #f7f7f7;
   justify-content: center;
-  transition: All 0.2s ease;
   align-items: center;
-  border: 2rpx solid rgb(245, 245, 245);
+  /* transform: skewX(37deg); */
+  border: 0rpx solid rgb(204, 204, 204);
   border-radius: 48rpx;
 }
 .Cells_Hover{
+  width: 83rpx;
+  height: 83rpx;
   border: 2rpx solid #61aff8;
-  font-size: 40rpx;
-  /* border-radius: 48rpx; */
+  border-radius: 48rpx;
 }
 .CellContainer{
-  width: 710rpx;
+  width: 700rpx;
   flex-wrap: wrap;
   margin: 20rpx;
   display: flex;
