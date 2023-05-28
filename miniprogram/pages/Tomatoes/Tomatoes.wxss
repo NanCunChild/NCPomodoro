@@ -33,7 +33,7 @@ ec-canvas{
   font-weight: 100;
 }
 .WeekTC{
-  width: 84rpx;
+  width: 86rpx;
   height: 20rpx;
   margin: 0rpx 5rpx 0rpx 5rpx;
   display: flex;
@@ -45,19 +45,18 @@ ec-canvas{
   /* border: #777777 solid 2rpx; */
 }
 .WeekTCContainer{
-  width: 640rpx;
+  width: 660rpx;
   height: 24rpx;
-  margin: 0rpx 0rpx -18rpx 0rpx;
+  margin: 0rpx 0rpx -25rpx 0rpx;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: nowrap;
-
   /* border: #777777 solid 2rpx; */
 }
 .Cell{
-  width: 86rpx;
-  height: 86rpx;
+  width: 82rpx;
+  height: 82rpx;
   margin:5rpx;
   font-size: 36rpx;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -66,14 +65,14 @@ ec-canvas{
   background-color: rgb(245, 243, 245);
   justify-content: center;
   align-items: center;
-  /* transform: skewX(37deg); */
-  border: 0rpx solid rgb(204, 204, 204);
+  transition: All 0.2s ease;
+  border: 2rpx solid rgb(245, 245, 245);
   border-radius: 48rpx;
 }
 
 .Cell_ToDay{
-  width: 82rpx;
-  height: 82rpx;
+  width: 80rpx;
+  height: 80rpx;
   margin:5rpx;
   font-size: 36rpx;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -84,20 +83,20 @@ ec-canvas{
   background-color: rgb(245, 243, 245);
   justify-content: center;
   align-items: center;
-  /* transform: skewX(37deg); */
+  transition: All 0.2s ease;
   border: 4rpx solid  #519fe7;
   border-radius: 48rpx;
 }
 .Cell_ToDayHover{
-  width: 86rpx;
-  height: 86rpx;
   color: #fefefe;
+  font-size: 42rpx;
+  font-weight: 500;
   background-color: #61aff8;
-  border: 0rpx solid #519fe7;
+  /* border: 0rpx solid #519fe7; */
 }
 .Cell_RestDay{
-  width: 86rpx;
-  height: 86rpx;
+  width: 82rpx;
+  height: 82rpx;
   margin:5rpx;
   font-size: 36rpx;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -106,19 +105,18 @@ ec-canvas{
   display: flex;
   background-color: #f7f7f7;
   justify-content: center;
+  transition: All 0.2s ease;
   align-items: center;
-  /* transform: skewX(37deg); */
-  border: 0rpx solid rgb(204, 204, 204);
+  border: 2rpx solid rgb(245, 245, 245);
   border-radius: 48rpx;
 }
 .Cells_Hover{
-  width: 83rpx;
-  height: 83rpx;
   border: 2rpx solid #61aff8;
-  border-radius: 48rpx;
+  font-size: 40rpx;
+  /* border-radius: 48rpx; */
 }
 .CellContainer{
-  width: 700rpx;
+  width: 720rpx;
   flex-wrap: wrap;
   margin: 20rpx;
   display: flex;
@@ -139,7 +137,8 @@ ec-canvas{
   border-radius: 20rpx; */
 }
 .CalenderContainer{
-  width: 700rpx;
+  width: 720rpx;
+  height: 680rpx;
   margin-top: 20rpx;
   margin-bottom: 40rpx;
   display: flex;
@@ -152,7 +151,7 @@ ec-canvas{
 }
 .Body{
   width: 100%;
-  height: 1680rpx;
+  height: auto;
   flex-wrap: wrap;
   display: flex;
   justify-content: center;
@@ -172,7 +171,7 @@ ec-canvas{
 }
 .DetailInfo_FLEX{
   width: 350rpx;
-  height: 460rpx;
+  height: auto;
   margin: 5rpx;
   background-color: #fcfcfc;
   display: flex;

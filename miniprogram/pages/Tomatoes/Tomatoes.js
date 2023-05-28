@@ -8,7 +8,7 @@ Page({
     WholeDayList: [],
     ToToDayList: [],
     RestDayList: [], 
-
+ 
     ToDay: 0,
     Now_Year: "",
     Now_Month: "",
@@ -101,8 +101,8 @@ Page({
   onLoad() {
     this.ecComponent = this.selectComponent('#LogsChart');
     this.DateProcess();
-    this.EChartDataReformer();
-  },
+    // this.EChartDataReformer();
+  }, 
   onReady: function () {
 
   },
@@ -333,7 +333,7 @@ Page({
       }
       Exercise_Reformed.push(
         OneDayTime_2
-      )
+      ) 
 
       for (let j = 0; j < Rest_All.length; j++) {
         if (Rest_All[j].Date_Year == parseInt(this.data.Now_Year) && Rest_All[j].Date_Month == parseInt(this.data.Now_Month) && Rest_All[j].Date_Day == i) {
@@ -379,42 +379,44 @@ Page({
 
     // console.log(typeof(this.data.Now_Month));
   },
-  chartInit(LogsList) {
-    const that = this;
-    if (!that.ecComponent) return wx.showToast({
-      icon: "error",
-      title: '初始化错误',
-    });
-    // console.log(LogsList);
 
-    that.ecComponent.init((canvas, width, height, dpr) => {
-      // 获取组件的 canvas、width、height 后的回调函数
-      // 在这里初始化图表
-      const chart = echarts.init(canvas, null, {
-        width: width,
-        height: height,
-        devicePixelRatio: dpr // new
-      });
+  // chartInit(LogsList) {
+  //   const that = this;
+  //   if (!that.ecComponent) return wx.showToast({
+  //     icon: "error",
+  //     title: '初始化错误',
+  //   });
+  //   // console.log(LogsList);
 
-      // 模拟请求接口
-      setTimeout(() => {
-        that.data.option.series[0].data = LogsList[0].Study_Reformed;
-        that.data.option.series[1].data = LogsList[0].Work_Reformed;
-        that.data.option.series[2].data = LogsList[0].Exercise_Reformed;
-        that.data.option.series[3].data = LogsList[0].Rest_Reformed;
-        // that.data.option.series[4].data = LogsList[0].Other_Reformed;
-        let option = JSON.parse(JSON.stringify(that.data.option));
-        chart.setOption(option);
-      }, 200)
+  //   that.ecComponent.init((canvas, width, height, dpr) => {
+  //     // 获取组件的 canvas、width、height 后的回调函数
+  //     // 在这里初始化图表
+  //     const chart = echarts.init(canvas, null, {
+  //       width: width,
+  //       height: height,
+  //       devicePixelRatio: dpr // new
+  //     });
 
-      // 将图表实例绑定到 this 上，可以在其他成员函数（如 dispose）中访问
-      that.chart = chart;
-      // console.log(chart);
+  //     // 模拟请求接口
+  //     setTimeout(() => {
+  //       that.data.option.series[0].data = LogsList[0].Study_Reformed;
+  //       that.data.option.series[1].data = LogsList[0].Work_Reformed;
+  //       that.data.option.series[2].data = LogsList[0].Exercise_Reformed;
+  //       that.data.option.series[3].data = LogsList[0].Rest_Reformed;
+  //       // that.data.option.series[4].data = LogsList[0].Other_Reformed;
+  //       let option = JSON.parse(JSON.stringify(that.data.option));
+  //       chart.setOption(option);
+  //     }, 200)
 
-      // 注意这里一定要返回 chart 实例，否则会影响事件处理等
-      return chart;
-    });
-  },
+  //     // 将图表实例绑定到 this 上，可以在其他成员函数（如 dispose）中访问
+  //     that.chart = chart;
+  //     // console.log(chart);
+
+  //     // 注意这里一定要返回 chart 实例，否则会影响事件处理等
+  //     return chart;
+  //   });
+  // },
+
   ShowDetails: function (CD) {
     var Logs = wx.getStorageSync('Logs') || [];
     var LogsDisplay = [];

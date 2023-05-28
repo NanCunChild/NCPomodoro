@@ -18,7 +18,7 @@
       <block wx:if="{{DateOffset==1}}">
         <view class="Cell" wx:for="{{WeekAli_Block}}" wx:key="index"></view>
         <view class="Cell {{CurrentDay==item ? 'Cells_Hover' : ''}}" wx:for="{{ToToDayList}}" wx:key="item" id="{{item}}" catchtap="CircleIt">{{item}}</view>
-        <view class="Cell_ToDay {{CurrentDay==32 ? 'Cell_ToDayHover' : ''}}" id="32" catchtap="CircleIt">{{ToDay}}</view>
+        <view class="Cell_ToDay {{CurrentDay==32 ? 'Cell_ToDayHover' : ''}}" id="32" catchtap="CircleIt">{{ToDay}}</view> <!--今天-->
         <view class="Cell_RestDay {{CurrentDay==item ? 'Cells_Hover' : ''}}" wx:for="{{RestDayList}}" wx:key="item" id="{{item}}" catchtap="CircleIt">{{item}}</view>
       </block>
       <block wx:else>
@@ -35,6 +35,7 @@
           <view class="DetailDist">{{item.Dist}}次中断</view>
         </view>
       </view>
+      
       <view class="DetailInfo_FLEX_NoData" hidden="{{LogsDisplay.length!=0}}">
         <view class="NoDetail">本日无记录</view>
       </view>
@@ -42,7 +43,10 @@
     <!-- <button bindtap="DownLoadLogs">同步云端信息</button> -->
     <!-- <button bindtap="chartInit">ECharts Test</button> -->
   </view>
-  <view class="LogsChart">
+  <!-- <view class="LogsChart">
     <ec-canvas id="LogsChart" canvas-id="LogsChart" ec="{{ec}}"></ec-canvas>
-  </view> 
+  </view>  -->
+  <view>
+  
+  </view>
 </view>

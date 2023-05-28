@@ -1,7 +1,7 @@
 /* pages/DetailLogs/DetailLogs.wxss */
 .body{
   width: 750rpx;
-  height: 1880rpx;
+  height: auto;
   display: flex;
   justify-content: center;
   
