@@ -18,3 +18,7 @@ Tangong Li
 
 Experients:
 Junze Yu, Jie Zhang
+
+When I look back on this program, I have to say that it is no feature but using no components to make a modern appearence.
+
+It is a little hard, and I still remember the determination when I dev it.
